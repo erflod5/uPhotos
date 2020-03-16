@@ -10,13 +10,24 @@
                 </form>
             </div>
             <div class="col-md-6 p-4">
-                <div>
-                    <img src="../../assets/hiclipart.com.png" style="width:75px;height:120px;" id="icon" alt="User Icon" />
+                <div style="text-align:center">
+                    <div>
+                        <webcam [height]="250" [width]="250" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+                            *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+                            [videoOptions]="videoOptions" (cameraSwitched)="cameraWasSwitched($event)"
+                            (initError)="handleInitError($event)"></webcam>
+                        <br />
+                        <button (click)="triggerSnapshot();" type="button" class="btn btn-success btn-sm m-4"> 📸 </button>
+                        <button (click)="showNextWebcam(true);" type="button" class="btn btn-primary btn-sm m-4"> 🔁 </button>
+                    </div>
                 </div>
-                <form class="mt-2">
-                    <input type="button" value="Capturar" (click)="captura()">
-                </form>
+                <h4 *ngIf="errors.length > 0">Messages:</h4>
+                <ul *ngFor="let error of errors">
+                    <li>{{error | json}}</li>
+                </ul>
             </div>
         </div>
+
+        <input type="file" name="" id="">
     </div>
 </div>
