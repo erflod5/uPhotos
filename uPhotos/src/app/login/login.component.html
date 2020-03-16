@@ -1,1 +1,22 @@
-<p>login works!</p>
+<div class="wrapper">
+    <h1>uPhotos</h1>
+    <div id="formContent">
+        <div class="row">
+            <div class="col-md-6 p-4">
+                <form>
+                    <input type="text" id="login" name="login" placeholder="login" (keyup)="user($event)">
+                    <input type="password" id="password" name="login" placeholder="password" (keyup)="pass($event)">
+                    <input type="button" value="Log In" (click)="login()">
+                </form>
+            </div>
+            <div class="col-md-6 p-4">
+                <div>
+                    <img src="../../assets/hiclipart.com.png" style="width:75px;height:120px;" id="icon" alt="User Icon" />
+                </div>
+                <form class="mt-2">
+                    <input type="button" value="Capturar" (click)="captura()">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
