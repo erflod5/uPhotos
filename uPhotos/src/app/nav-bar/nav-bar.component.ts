@@ -8,7 +8,10 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  urlProfImage : string;
+  constructor(private router: Router) { 
+    this.urlProfImage = 'https://images.pexels.com/photos/38238/maldives-ile-beach-sun-38238.jpeg?auto=compress&cs=tinysrgb&h=650&w=940';
+  }
 
   ngOnInit(): void {
   }
