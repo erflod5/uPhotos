@@ -19,9 +19,13 @@ export class ApiService {
   //http://localhost:3000/api/upload
   //JsonFormat: {username,password,extension,base64}
   public register(data : any) : Observable<any>{
-    return this.http.post(`${this.ip}/upload`,data);
+    return this.http.post(`${this.ip}/signin`,data);
   }
   
+  public newImage(data : any) : Observable<any>{
+    return this.http.post(`${this.ip}/upload`,data);
+  }
+
   public setUser(user: any) : void{
     let usr_string = JSON.stringify(user);
     localStorage.setItem('currentuser',usr_string);
@@ -37,7 +41,7 @@ export class ApiService {
   }
 
   public removeUser() : void{
-    localStorage.removeItem("currentUser");
+    localStorage.removeItem("currentuser");
   }
 
   public showSuccess(mensaje : string, title : string){
@@ -52,4 +56,9 @@ export class ApiService {
     });
   }
 
+  public showInfo(mensaje :string, title : string){
+    this.toastr.info(mensaje,title,{
+      timeOut : 1500
+    });
+  }
 }

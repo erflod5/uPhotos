@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-user',
@@ -7,9 +8,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  private selectedFile: ImageSnippet;
+  url = 'https://images.pexels.com/photos/62307/air-bubbles-diving-underwater-blow-62307.jpeg?auto=compress&cs=tinysrgb&h=650&w=940';
+  url2 = 'https://images.pexels.com/photos/1038002/pexels-photo-1038002.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';
+  url3 = 'https://images.pexels.com/photos/56005/fiji-beach-sand-palm-trees-56005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';
+
+  data = [this.url,this.url2,this.url3,this.url];
+  constructor(private apiService : ApiService) { }
 
   ngOnInit(): void {
   }
 
+  //Handler ProfileImg
+  processFile(imageInput: any) {
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+    reader.addEventListener('load', (event: any) => {
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+      this.data.push(this.selectedFile.src);
+      var data = {
+        base64 : this.selectedFile.src,
+        extension : this.selectedFile.file.type.split('/')[1],
+        username : this.apiService.getCurrentUser().username,
+      };
+      this.apiService.newImage(data).subscribe(
+        (res) =>{
+          console.log(res);
+          this.apiService.showSuccess('Congrats!','Imagen subida correctamente');
+        },
+        (err) => {
+          this.apiService.showSuccess('Error!','Ocurrio un error mientras se subia la imagen');
+        }
+      );
+
+    });
+    reader.readAsDataURL(file);
+  }
+}
+
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
 }

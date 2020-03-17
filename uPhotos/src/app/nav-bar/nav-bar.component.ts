@@ -10,6 +10,9 @@ import { ApiService } from '../api.service';
 export class NavBarComponent implements OnInit {
 
   urlProfImage : string;
+  private selectedFile: ImageSnippet;
+  srcImg : string = '../../assets/hiclipart.com.png';
+
   constructor(private router: Router, private apiService : ApiService) { 
     this.urlProfImage = 'https://images.pexels.com/photos/38238/maldives-ile-beach-sun-38238.jpeg?auto=compress&cs=tinysrgb&h=650&w=940';
   }
@@ -22,6 +25,22 @@ export class NavBarComponent implements OnInit {
   }
 
   logout(){
-    console.log('Logout');
+    this.apiService.showInfo('Logout','Cerrando Sesion');
+    this.apiService.removeUser();
+    this.router.navigate(['/login']);
   }
+
+  processFile(imageInput: any) {
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+    reader.addEventListener('load', (event: any) => {
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+      this.srcImg = this.selectedFile.src;
+    });
+    reader.readAsDataURL(file);
+  }
+}
+
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
 }

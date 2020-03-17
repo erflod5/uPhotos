@@ -7,13 +7,15 @@ import { SigninComponent } from './signin/signin.component';
 import { MeComponent } from './me/me.component';
 import { AlbumComponent } from './album/album.component';
 
+import { AuthGuard } from './auth.guard';
+
 const routes: Routes = [
-  { path: 'user', component: UserComponent },
+  { path: 'user', component: UserComponent, canActivate : [AuthGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'signin', component: SigninComponent },
-  { path: 'me', component: MeComponent },
-  { path: 'album', component: AlbumComponent },
-  { path : '', component : LoginComponent }
+  { path: 'me', component: MeComponent, canActivate : [AuthGuard]},
+  { path: 'album', component: AlbumComponent,canActivate : [AuthGuard]},
+  { path : '**', component : UserComponent,canActivate : [AuthGuard]}
 ];
 
 @NgModule({
