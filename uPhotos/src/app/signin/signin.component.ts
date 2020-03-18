@@ -42,7 +42,7 @@ export class SigninComponent implements OnInit {
         username : this.username,
         password : this.password,
         extension : this.selectedFile === undefined ? false : this.selectedFile.file.type.split('/')[1],
-        base64 : this.selectedFile === undefined ? false : this.selectedFile.src
+        base64 : this.selectedFile === undefined ? false : this.selectedFile.src,
       };
       console.log(data);
       this.apiService.register(data).subscribe(

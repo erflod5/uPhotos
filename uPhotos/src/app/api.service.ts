@@ -13,6 +13,7 @@ export class ApiService {
   });
 
   ip : string = 'http://localhost:3000/api';
+  ip2 : string = 'https://0ass0taz6d.execute-api.us-west-2.amazonaws.com/api/facescompare';
   
   constructor(private http : HttpClient, private toastr : ToastrService) { }
 
@@ -24,6 +25,10 @@ export class ApiService {
   
   public newImage(data : any) : Observable<any>{
     return this.http.post(`${this.ip}/upload`,data);
+  }
+
+  public getFotosMias() : Observable<any>{
+    return this.http.get(`${this.ip2}?username=${this.getCurrentUser().username}`);
   }
 
   public setUser(user: any) : void{

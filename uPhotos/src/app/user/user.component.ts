@@ -25,22 +25,25 @@ export class UserComponent implements OnInit {
     const reader = new FileReader();
     reader.addEventListener('load', (event: any) => {
       this.selectedFile = new ImageSnippet(event.target.result, file);
-      this.data.push(this.selectedFile.src);
+      var curentUser = this.apiService.getCurrentUser();
+      var arreglo = curentUser.src.split('/');
+
       var data = {
         base64 : this.selectedFile.src,
         extension : this.selectedFile.file.type.split('/')[1],
-        username : this.apiService.getCurrentUser().username,
+        username : curentUser.username,
+        profile : arreglo[arreglo.length - 1]
       };
       this.apiService.newImage(data).subscribe(
         (res) =>{
           console.log(res);
           this.apiService.showSuccess('Congrats!','Imagen subida correctamente');
+          this.data.push(this.selectedFile.src);
         },
         (err) => {
           this.apiService.showSuccess('Error!','Ocurrio un error mientras se subia la imagen');
         }
       );
-
     });
     reader.readAsDataURL(file);
   }
