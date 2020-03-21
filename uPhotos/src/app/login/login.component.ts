@@ -20,13 +20,13 @@ export class LoginComponent implements OnInit {
   constructor(private apiService : ApiService, private router : Router) { }
 
   login() {
-    alert("Login: " + this.username + " - " + this.password);
+    //alert("Login: " + this.username + " - " + this.password);
     let user = {username: this.username, password: this.password}
     this.apiService.login(user).subscribe(
       (res) =>{
-        console.log(res);
+        //console.log(res);
         if(res.estado){
-          alert('Bienvenido '+ res.username);
+          this.apiService.showSuccess('', 'Bienvenido '+ res.username);
           let user = {
             username: res.username,
             src : res.src
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
           this.apiService.showSuccess('Ingreso Exitoso', 'Bienvenido '+res.username);
           this.router.navigate(['/user']);
         }else{
-          alert('Usuario o password incorrectos.');
+          this.apiService.showDanger('', 'Usuario o password incorrectos.');
         }
       },
       (err) => {
@@ -99,9 +99,9 @@ export class LoginComponent implements OnInit {
     console.log(param);
     this.apiService.iniciarSesion(param).subscribe(
       (res) =>{
-        console.log(res);
+        //console.log(res);
         if(res.estado){
-          alert('Bienvenido '+ res.username.S);
+          this.apiService.showSuccess('', 'Bienvenido '+ res.username.S);
           let user = {
             username: res.username.S,
             src : res.src
@@ -110,7 +110,7 @@ export class LoginComponent implements OnInit {
           this.apiService.showSuccess('Ingreso Exitoso', 'Bienvenido '+res.username.S);
           this.router.navigate(['/user']);
         }else{
-          alert('Rostro no registrado.');
+          this.apiService.showDanger('', 'Rostro no registrado.');
         }
       },
       (err) => {
