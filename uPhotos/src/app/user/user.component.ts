@@ -9,11 +9,11 @@ import { ApiService } from '../api.service';
 export class UserComponent implements OnInit {
 
   private selectedFile: ImageSnippet;
-  url = 'https://images.pexels.com/photos/62307/air-bubbles-diving-underwater-blow-62307.jpeg?auto=compress&cs=tinysrgb&h=650&w=940';
-  url2 = 'https://images.pexels.com/photos/1038002/pexels-photo-1038002.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';
-  url3 = 'https://images.pexels.com/photos/56005/fiji-beach-sand-palm-trees-56005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';
+  // url = 'https://images.pexels.com/photos/62307/air-bubbles-diving-underwater-blow-62307.jpeg?auto=compress&cs=tinysrgb&h=650&w=940';
+  // url2 = 'https://images.pexels.com/photos/1038002/pexels-photo-1038002.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';
+  // url3 = 'https://images.pexels.com/photos/56005/fiji-beach-sand-palm-trees-56005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';
 
-  data = [this.url,this.url2,this.url3,this.url];
+  data = [];
   constructor(private apiService : ApiService) { }
 
   ngOnInit(): void {

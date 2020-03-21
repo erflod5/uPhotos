@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
         if(res.estado){
           alert('Bienvenido '+ res.username);
           let user = {
-            user: res.username,
+            username: res.username,
             src : res.src
            }
           this.apiService.setUser(user);
@@ -103,7 +103,7 @@ export class LoginComponent implements OnInit {
         if(res.estado){
           alert('Bienvenido '+ res.username.S);
           let user = {
-            user: res.username.S,
+            username: res.username.S,
             src : res.src
            }
           this.apiService.setUser(user);
