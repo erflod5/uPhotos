@@ -9,7 +9,7 @@ import { ApiService } from '../api.service';
 export class MeComponent implements OnInit {
 
   data : Array<any> = [];
-
+  imgSeleccion: string = "";
   constructor(private apiService : ApiService) { }
 
   ngOnInit(): void {
@@ -30,5 +30,11 @@ export class MeComponent implements OnInit {
       }
     )
   }
+
+  setImg(src){
+    this.imgSeleccion = src;
+  }
+
+
 
 }

@@ -13,10 +13,25 @@ export class UserComponent implements OnInit {
   // url2 = 'https://images.pexels.com/photos/1038002/pexels-photo-1038002.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';
   // url3 = 'https://images.pexels.com/photos/56005/fiji-beach-sand-palm-trees-56005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';
 
-  data = [];
   constructor(private apiService : ApiService) { }
 
+  data : Array<any> = [];
+  imgSeleccion: string = "";
   ngOnInit(): void {
+    this.getFotos();
+  }
+
+  getFotos(){
+    this.apiService.getFotos().subscribe(
+      (res) =>{
+        res.body[0].pictures.forEach(element => {
+            this.data.push(element.src);
+        });
+      },
+      (err) =>{
+        console.log(err);
+      }
+    )
   }
 
   //Handler ProfileImg
@@ -47,6 +62,11 @@ export class UserComponent implements OnInit {
     });
     reader.readAsDataURL(file);
   }
+
+  setImg(src){
+    this.imgSeleccion = src;
+  }
+
 }
 
 class ImageSnippet {

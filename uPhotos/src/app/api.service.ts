@@ -12,8 +12,10 @@ export class ApiService {
     "Content-Type": "application/json"
   });
 
-  ip : string = 'http://localhost:3000/api';
+  ip : string = 'http://18.222.23.191:3000/api';
   ip2 : string = 'https://0ass0taz6d.execute-api.us-west-2.amazonaws.com/api/facescompare';
+  // ip3 : string = 'https://0ass0taz6d.execute-api.us-west-2.amazonaws.com/api/facescompare';
+  // ip4 : string = 'https://0ass0taz6d.execute-api.us-west-2.amazonaws.com/api/facescompare';
   
   constructor(private http : HttpClient, private toastr : ToastrService) { }
 
@@ -76,6 +78,16 @@ export class ApiService {
   public login(data : any) : Observable<any>{
     return this.http.post(`${this.ip}/login`,data);
   }
+
+  //FUNCIONES LAMBDA GET FOTOS
+  public getFotos() : Observable<any>{
+    return this.http.get(`${this.ip2}?username=${this.getCurrentUser().username}`);
+  }
+
+  public getAlbumes() : Observable<any>{
+    return this.http.get(`${this.ip2}?username=${this.getCurrentUser().username}`);
+  }
+
 
 
 }

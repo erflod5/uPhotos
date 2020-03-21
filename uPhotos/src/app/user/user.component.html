@@ -1,8 +1,13 @@
 <app-nav-bar></app-nav-bar>
 <div class="container-fluid" style="margin-top:20px;">
+    <hr>
     <div class="row">
-        <div class="col-lg-9 col-md-8 mb-4">
-            <h1>Galeria</h1>
+        <div class="col-md-8">
+            <div class="card text-center">
+                <div class="card-header bg-primary text-white h5 justify-content-between align-items-center">
+                    Galeria
+                </div>
+            </div>
         </div>
         <div class="col-lg-3 col-md-4 mb-4">
             <div class="custom-file">
@@ -11,12 +16,33 @@
                 <label class="custom-file-label text-left" for="customFile">Seleccionar imagen</label>
             </div>
         </div>
-
+    </div>
+    <hr>
+    <div class="row">
         <div *ngFor="let img of data;" class="col-lg-3 col-md-4 col-xs-6 thumb">
-            <a href={{img}}
-                class="fancybox" rel="ligthbox">
+            <a data-toggle="modal" href="#myModal" (click)="setImg(img)">
                 <img src={{img}} class="zoom img-fluid " alt="">
             </a>
         </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src={{imgSeleccion}} class="img-fluid " alt="" id="imgModal" name="imgModal">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
     </div>
 </div>

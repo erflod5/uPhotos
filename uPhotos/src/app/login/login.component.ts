@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
             src : res.src
            }
           this.apiService.setUser(user);
-          this.apiService.showSuccess('Ingreso Exitoso', 'Bienvenido '+res.username);
+          //this.apiService.showSuccess('Ingreso Exitoso', 'Bienvenido '+res.username);
           this.router.navigate(['/user']);
         }else{
           this.apiService.showDanger('', 'Usuario o password incorrectos.');
@@ -107,7 +107,7 @@ export class LoginComponent implements OnInit {
             src : res.src
            }
           this.apiService.setUser(user);
-          this.apiService.showSuccess('Ingreso Exitoso', 'Bienvenido '+res.username.S);
+          //this.apiService.showSuccess('Ingreso Exitoso', 'Bienvenido '+res.username.S);
           this.router.navigate(['/user']);
         }else{
           this.apiService.showDanger('', 'Rostro no registrado.');

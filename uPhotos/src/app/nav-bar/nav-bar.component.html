@@ -1,21 +1,23 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #5fbae9;">
-    <a class="navbar-brand" routerLink="/user">uPhotos</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/user">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/album">Albumes</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/me">Fotos en las que apareces</a>
-          </li>  
-      </ul>
-      <input type="button" value="Logout" class="btn btn-danger mr-4" (click)="logout()">
-      <img src={{urlProfImage}} style="width: 40px; height: 40px;" class="rounded-circle" alt="Cinque Terre">
-    </div>
-  </nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <!-- style="background-color: #5fbae9;" -->
+  <a class="navbar-brand" routerLink="">uPhotos</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/user">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/album">Albumes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/me">Fotos en las que apareces</a>
+      </li>
+    </ul>
+    <button class="btn btn-primary" (click)="logout()">Logout</button>
+    <img src={{urlProfImage}} style="width: 40px; height: 40px;" class="rounded-circle" alt="Cinque Terre">
+  </div>
+</nav>
