@@ -1,7 +1,12 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-
+import { ApiService } from '../api.service';
 import { Subject, Observable } from "rxjs";
 import { WebcamImage, WebcamInitError, WebcamUtil } from "ngx-webcam";
+import { Router } from '@angular/router';
+import { strict } from 'assert';
+//import { $ } from 'protractor';
+declare var $: any;
+const IP:string = 'http://localhost:3000';
 
 @Component({
   selector: "app-login",
@@ -12,10 +17,31 @@ export class LoginComponent implements OnInit {
   private username: string = "";
   private password: string = "";
 
-  constructor() { }
+  constructor(private apiService : ApiService, private router : Router) { }
 
   login() {
     alert("Login: " + this.username + " - " + this.password);
+    let user = {username: this.username, password: this.password}
+    this.apiService.login(user).subscribe(
+      (res) =>{
+        console.log(res);
+        if(res.estado){
+          alert('Bienvenido '+ res.username);
+          let user = {
+            user: res.username,
+            src : res.src
+           }
+          this.apiService.setUser(user);
+          this.apiService.showSuccess('Ingreso Exitoso', 'Bienvenido '+res.username);
+          this.router.navigate(['/user']);
+        }else{
+          alert('Usuario o password incorrectos.');
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
   
   user(event: any) {
@@ -68,6 +94,30 @@ export class LoginComponent implements OnInit {
     this.nextWebcam.next(directionOrDeviceId);
   }
   public handleImage(webcamImage: WebcamImage): void {
+    
+    let param = {sourceBase64: webcamImage.imageAsDataUrl.replace('data:image/jpeg;base64,', '')};
+    console.log(param);
+    this.apiService.iniciarSesion(param).subscribe(
+      (res) =>{
+        console.log(res);
+        if(res.estado){
+          alert('Bienvenido '+ res.username.S);
+          let user = {
+            user: res.username.S,
+            src : res.src
+           }
+          this.apiService.setUser(user);
+          this.apiService.showSuccess('Ingreso Exitoso', 'Bienvenido '+res.username.S);
+          this.router.navigate(['/user']);
+        }else{
+          alert('Rostro no registrado.');
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+    console.log(webcamImage.imageAsDataUrl);
     console.info("received webcam image", webcamImage);
     this.pictureTaken.emit(webcamImage);
   }

@@ -66,4 +66,16 @@ export class ApiService {
       timeOut : 1500
     });
   }
+
+  //LOGIN
+  //Reconocimiento Facial
+  public iniciarSesion(data : any) : Observable<any>{
+    return this.http.post(`${this.ip}/iniciarSesion`,data);
+  }
+  //Form
+  public login(data : any) : Observable<any>{
+    return this.http.post(`${this.ip}/login`,data);
+  }
+
+
 }
