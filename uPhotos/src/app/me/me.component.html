@@ -1,23 +1,15 @@
 <app-nav-bar></app-nav-bar>
 <div class="container-fluid" style="margin-top:20px;">
     <hr>
-    <div class="row">
-        <div class="col-md-8">
-            <div class="card text-center">
-                <div class="card-header bg-primary text-white h5 justify-content-between align-items-center">
-                    Galeria
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mb-4">
-            <div class="custom-file">
-                <input #imageInput type="file" accept="image/*" class="custom-file-input" id="customFile"
-                    (change)="processFile(imageInput)">
-                <label class="custom-file-label text-left" for="customFile">Seleccionar imagen</label>
+    <div class="col-md-12">
+        <div class="card text-center">
+            <div class="card-header bg-primary text-white h5 justify-content-between align-items-center">
+                Fotos en las que apareces
             </div>
         </div>
     </div>
     <hr>
+
     <div class="row">
         <div *ngFor="let img of data;" class="col-lg-3 col-md-4 col-xs-6 thumb">
             <a data-toggle="modal" href="#myModal" (click)="setImg(img)">
@@ -26,6 +18,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">

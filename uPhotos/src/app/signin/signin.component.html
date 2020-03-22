@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-right">
+    <!-- style="background-color: #5fbae9;" -->
+    <a class="navbar-brand" routerLink="/login">uPhotos</a>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <button class="btn btn-primary" routerLink="/login" >Iniciar Sesion</button>
+            </li>
+        </ul>
+    </div>
+
+</nav>
+
+
+<div class="wrapper mt-5">
+    <!-- <h1>uPhotos</h1> -->
+    <div id="formContent">
+        <div class="row">
+            <div class="col-md-6 p-4">
+                <form>
+                    <input type="text" id="login" name="login" placeholder="Username" (keyup)="user($event)">
+                    <input type="password" id="password" name="login" placeholder="Password" (keyup)="pass($event)">
+                    <input type="password" id="passwordConfirm" name="login" placeholder="Confirm Password"
+                        (keyup)="confirmPass($event)">
+                </form>
+            </div>
+            <div class="col-md-6 p-4">
+                <img src={{srcImg}} alt="usr" style="width: 100px; height: 100px;" class="img-thumbnail mb-4">
+                <div class="custom-file">
+                    <input #imageInput type="file" accept="image/*" class="custom-file-input" id="customFile"
+                        (change)="processFile(imageInput)">
+                    <label class="custom-file-label text-left" for="customFile">Seleccionar imagen</label>
+                </div>
+            </div>
+        </div>
+        <input type="button" value="Registrar" (click)="signin()">
+    </div>
+</div>
