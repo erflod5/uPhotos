@@ -48,17 +48,22 @@ export class SigninComponent implements OnInit {
       this.apiService.register(data).subscribe(
         (res) =>{
           console.log(res);
-          this.apiService.setUser(res);
-          this.apiService.showSuccess('Bienvenido!','Usuario creado correctamente');
-          this.router.navigate(['/user']);
+          if(res.status == false){
+            this.apiService.showDanger('Error!','Ya existe el user');
+          }
+          else{
+            this.apiService.setUser(res);
+            this.apiService.showSuccess('Bienvenido!','Usuario creado correctamente');
+            this.router.navigate(['/user']);
+          }
         },
         (err) => {
-          console.log(err);
+          this.apiService.showDanger('Error!','Ya existe el user');
         }
       );
     }
     else{
-      alert('Las contraseñas no coinciden');
+      this.apiService.showDanger('Error!','Las contraseñas no coinciden');
     }
   }
 
